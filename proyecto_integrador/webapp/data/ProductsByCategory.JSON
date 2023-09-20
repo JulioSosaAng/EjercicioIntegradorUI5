@@ -1,0 +1,12 @@
+{
+    "Category": [
+      { "ProductID": 1, "Name": "Condiments"},
+      { "ProductID": 2, "Name": "Seafood"},
+      { "ProductID": 3, "Name": "Dairy Products"},
+      { "ProductID": 4, "Name": "Beverages"},
+      { "ProductID": 5, "Name": "Confections"},  
+      { "ProductID": 6, "Name": "Grains/Cereals"},
+      { "ProductID": 7, "Name": "Produce"},                      
+      { "ProductID": 8, "Name": "Meat/Poultry"}
+    ]
+}

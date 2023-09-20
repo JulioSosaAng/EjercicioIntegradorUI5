@@ -1,0 +1,57 @@
+_schema-version: "3.2"
+ID: ProyectoIntegrador
+version: 0.0.1
+modules:
+- name: ProyectoIntegrador-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: ProyectoIntegrador-destination-service
+    parameters:
+      content-target: true
+  - name: ProyectoIntegrador_html_repo_host
+    parameters:
+      service-key:
+        name: ProyectoIntegrador_html_repo_host-key
+  - name: uaa_ProyectoIntegrador
+    parameters:
+      service-key:
+        name: uaa_ProyectoIntegrador-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: proyectointegrador_ProyectoIntegrador_html_repo_host
+          ServiceInstanceName: ProyectoIntegrador-html5-app-host-service
+          ServiceKeyName: ProyectoIntegrador_html_repo_host-key
+          sap.cloud.service: proyectointegrador
+        - Authentication: OAuth2UserTokenExchange
+          Name: proyectointegrador_uaa_ProyectoIntegrador
+          ServiceInstanceName: ProyectoIntegrador-xsuaa-service
+          ServiceKeyName: uaa_ProyectoIntegrador-key
+          sap.cloud.service: proyectointegrador
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+resources:
+- name: ProyectoIntegrador-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      version: 1.0.0
+    service: destination
+    service-name: ProyectoIntegrador-destination-service
+    service-plan: lite
+- name: ProyectoIntegrador_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: ProyectoIntegrador-html5-app-host-service
+    service-plan: app-host
+- name: uaa_ProyectoIntegrador
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: ProyectoIntegrador-xsuaa-service
+    service-plan: application

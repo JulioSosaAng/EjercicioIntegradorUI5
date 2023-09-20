@@ -1,0 +1,61 @@
+<mvc:View controllerName="proyectointegrador.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    >
+	<Table id="idProductsTable"
+		inset="false"
+		items="{
+			path: 'productModel>/',
+			sorter: {
+				path: 'ProductName'
+			}
+		}">
+		<headerToolbar>
+			<OverflowToolbar>
+				<content>
+					<Title text="Products" level="H2"/>
+					<ToolbarSpacer />
+	
+				</content>
+			</OverflowToolbar>
+		</headerToolbar>
+		<infoToolbar>
+			<OverflowToolbar>
+				<Label text="Wide range of available Products by Category"/>
+            <ComboBox
+				id="cboBox"
+				items="{'/Category'}"
+				selectedKey="{/selectedProductId}"
+				>
+				<core:Item key="{ProductID}" text="{Name}" />
+			</ComboBox>
+			</OverflowToolbar>
+		</infoToolbar>
+		<columns>
+			<Column>
+				<Text text="Product" />
+			</Column>
+			<Column demandPopin="true">
+				<Text text="Category" />
+			</Column>
+			<Column
+				demandPopin="true">
+				<Text text="Units In Stock" />
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle">
+				<cells>
+					<ObjectIdentifier
+						title="{productModel>ProductName}"
+						text="{productModel>Discontinued}"/>
+					<Text
+						text="{productModel>CategoryName}" />
+					<Text
+						text="{productModel>UnitsInStock}" />
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</mvc:View>
